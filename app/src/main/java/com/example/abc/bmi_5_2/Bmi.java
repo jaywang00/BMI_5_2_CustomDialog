@@ -110,22 +110,33 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
             suggest.setText(R.string.advice_average);
 
         openOptionsDialog();
+        openOptionsDialog_yahoo();
+        openOptionsDialog_google();
     }
 
     void openOptionsDialog() {
-        Uri uri=Uri.parse("http://tw.yahoo.com");
-        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
-        startActivity(intent);
 
-
-//        number = "";
-//        findDialogViews();
-//        setListeners();
-//        AlertDialog.Builder builder = new AlertDialog.Builder(Bmi.this);
-//        builder.setTitle("我的撥號鍵盤");
-//        builder.setView(rootView);
-//        dialog = builder.show();
+        number = "";
+        findDialogViews();
+        setListeners();
+        AlertDialog.Builder builder = new AlertDialog.Builder(Bmi.this);
+        builder.setTitle("我的撥號鍵盤");
+        builder.setView(rootView);
+        dialog = builder.show();
     }
+
+    void openOptionsDialog_yahoo() {
+        Uri uri = Uri.parse("http://tw.yahoo.com");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
+    void openOptionsDialog_google() {
+        Uri uri = Uri.parse("http://maps.google.com");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
 
     //OptionMenu_Begin
     @Override
@@ -145,7 +156,7 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
         switch (item.getItemId()) {
 
             case R.id.menu_about:
-                openOptionsDialog();
+                openOptionsDialog_yahoo();
                 break;
 
             case R.id.menu_quit:
@@ -157,7 +168,7 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case MENU_ABOUT:
-                openOptionsDialog();
+                openOptionsDialog_google();
                 break;
 
             case MENU_QUIT:
