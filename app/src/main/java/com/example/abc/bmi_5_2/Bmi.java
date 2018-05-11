@@ -120,6 +120,7 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
         dialog = builder.show();
     }
 
+    //OptionMenu_Begin
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -144,4 +145,6 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
 
         return super.onOptionsItemSelected(item);
     }
+    //OptionMenu_End
+
 }
