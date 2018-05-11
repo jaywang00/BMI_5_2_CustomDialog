@@ -131,8 +131,10 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        menu.add(0, MENU_ABOUT, 0, "About").setIcon(android.R.drawable.ic_menu_info_details).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        menu.add(0, MENU_QUIT, 0, "Exit").setIcon(android.R.drawable.ic_menu_close_clear_cancel).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        getMenuInflater().inflate(R.menu.menu,menu);
+
+//        menu.add(0, MENU_ABOUT, 0, "About").setIcon(android.R.drawable.ic_menu_info_details).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+//        menu.add(0, MENU_QUIT, 0, "Exit").setIcon(android.R.drawable.ic_menu_close_clear_cancel).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -141,13 +143,20 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case MENU_ABOUT:
+//            case MENU_ABOUT:
+            case R.id.menu_about:
                 openOptionsDialog();
                 break;
 
-            case MENU_QUIT:
+//            case MENU_QUIT:
+            case R.id.menu_quit:
                 finish();
                 break;
+
+            case R.id.menu_item3:
+                finish();
+                break;
+
         }
 
         return super.onOptionsItemSelected(item);
