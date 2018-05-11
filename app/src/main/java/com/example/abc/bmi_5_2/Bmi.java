@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,6 +50,7 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_bmi);
         findViews();
         setListeners();
+        registerForContextMenu(submit);
     }
 
     private void findViews() {
@@ -109,9 +111,10 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
         else
             suggest.setText(R.string.advice_average);
 
-        openOptionsDialog();
-        openOptionsDialog_yahoo();
-        openOptionsDialog_google();
+//        openOptionsDialog();
+//        openOptionsDialog_yahoo();
+//        openOptionsDialog_google();
+
     }
 
     void openOptionsDialog() {
@@ -142,16 +145,48 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu,menu);
-
-        menu.add(0, MENU_ABOUT, 0, "About").setIcon(android.R.drawable.ic_menu_camera).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        menu.add(0, MENU_QUIT, 0, "Exit").setIcon(android.R.drawable.ic_menu_edit).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        createMenu(menu);
 
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        handleMenuItems(item);
+
+        return super.onOptionsItemSelected(item);
+    }
+    //OptionMenu_End
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+
+        createMenu(menu);
+
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        handleMenuItems(item);
+
+        return super.onContextItemSelected(item);
+    }
+
+
+    private void createMenu(Menu menu){
+
+        getMenuInflater().inflate(R.menu.menu,menu);
+
+        menu.add(0, MENU_ABOUT, 0, "About").setIcon(android.R.drawable.ic_menu_camera).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.add(0, MENU_QUIT, 0, "Exit").setIcon(android.R.drawable.ic_menu_edit).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+    }
+
+    private void handleMenuItems(MenuItem item){
 
         switch (item.getItemId()) {
 
@@ -164,7 +199,8 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.menu_item3:
-                finish();
+                openOptionsDialog();
+                ;
                 break;
 
             case MENU_ABOUT:
@@ -176,9 +212,10 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
                 break;
 
         }
-
-        return super.onOptionsItemSelected(item);
     }
-    //OptionMenu_End
 
 }
+
+
+
+
