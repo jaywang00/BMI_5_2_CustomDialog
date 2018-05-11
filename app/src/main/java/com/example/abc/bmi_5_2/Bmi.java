@@ -1,5 +1,7 @@
 package com.example.abc.bmi_5_2;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -111,13 +113,18 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
     }
 
     void openOptionsDialog() {
-        number = "";
-        findDialogViews();
-        setListeners();
-        AlertDialog.Builder builder = new AlertDialog.Builder(Bmi.this);
-        builder.setTitle("我的撥號鍵盤");
-        builder.setView(rootView);
-        dialog = builder.show();
+        Uri uri=Uri.parse("http://tw.yahoo.com");
+        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+        startActivity(intent);
+
+
+//        number = "";
+//        findDialogViews();
+//        setListeners();
+//        AlertDialog.Builder builder = new AlertDialog.Builder(Bmi.this);
+//        builder.setTitle("我的撥號鍵盤");
+//        builder.setView(rootView);
+//        dialog = builder.show();
     }
 
     //OptionMenu_Begin
